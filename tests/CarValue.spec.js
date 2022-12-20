@@ -1,4 +1,4 @@
-const carValue = require('..src/CarValue')
+const carValue = require('../src/CarValue')
 
 const testCases = [
     {
