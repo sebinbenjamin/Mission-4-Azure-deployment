@@ -43,6 +43,10 @@ jobs:
         with:
          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: 'Run Azure'            
+        run: |
+          az webapp list --query "[?state=='Running']"
+
       - name: 'Deploy to Azure WebApp'
         uses: azure/webapps-deploy@v2
         with:
@@ -50,10 +54,4 @@ jobs:
           publish-profile: ${{secrets.AZURE_WEBAPP_PUBLISH_PROFILE}}
           package: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
 
-      - name: 'Run Azure'            
-        run: |
-          az webapp list --query "[?state=='Running']"
 
-      - name: 'Run Azure'            
-        run: |
-          az webapp list --query "[?state=='Running']"
