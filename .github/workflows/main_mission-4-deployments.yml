@@ -24,6 +24,7 @@ jobs:
         run: 
           # install the project
           npm install
+          npm install nodemon
         working-directory: ${{env. AZURE_WEBAPP_PACKAGE_PATH}}
 
       - name: npm build
