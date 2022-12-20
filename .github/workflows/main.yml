@@ -1,15 +1,13 @@
 name: Deploy workflow
-
-
-  on: 
+on: 
     push:
       branches:
         - main
 
-  env: 
-    AZURE_WEBAPP_NAME: 
-    AZURE_WEBAPP_PATH:
-    NODE_VERSION:
+env: 
+    AZURE_WEBAPP_NAME: mission-4-deployment
+    AZURE_WEBAPP_PACKAGE_PATH: https://portal.azure.com/#@missionreadyhq.com/resource/subscriptions/4ecf69dc-2847-4051-af8f-8a669643d993/resourcegroups/mission-4/providers/Microsoft.Web/sites/mission-4-deployment/appServices
+    NODE_VERSION: v16.17.0
       
 jobs:
   build_and_deploy:
@@ -26,19 +24,19 @@ jobs:
         run: 
           # install the project
           npm install
-        working-directory:
+        working-directory: ${{env. AZURE_WEBAPP_PACKAGE_PATH}}
 
       - name: npm build
         run: 
           # Build the project
           npm run build --if-present
-        working-directory:
+        working-directory: ${{env. AZURE_WEBAPP_PACKAGE_PATH}}
 
       - name: npm test
         run: 
           # test the project
           npm run test --if-present
-        working-directory:
+        working-directory: ${{env. AZURE_WEBAPP_PACKAGE_PATH}}
 
       - name: 'Deploy to Azure WebApp'
         uses: azure/webapps-deploy@v2
