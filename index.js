@@ -1,9 +1,9 @@
 const carValue = require('./src/CarValue')
 const express = require('express');
 const server = express();
-const cookieParser = require('cookie-parser')
+// const cookieParser = require('cookie-parser')
 const env = require('dotenv');
-const { response } = require('express');
+// const { response } = require('express');
 server.use(express.json())
 env.config()
 
@@ -12,7 +12,12 @@ server.listen(PORT, () => {
     console.log("listening to port 4000");
 });
 
-
+/* 
+{
+    "model" : "Toyata",
+    "year" : 2022
+}
+ */
 server.post("/car-value", (request, response) => {
     let car = request.body
     let output = carValue(car);
